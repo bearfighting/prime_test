@@ -1,29 +1,28 @@
 function isPrime(num) {
     if (num === 2) {
         return true;
-    }
-    if (num <= 1 || num % 2 === 0) {
-        return false
-    }
-    for (let div = 3; div <= Math.sqrt(num); div += 2) {
-        if (num % div === 0) {
-            return false;
+    } else if (num === 1 || num % 2 === 0) {
+        return false;
+    } else {
+        const to = Math.sqrt(num);
+        for (let div = 3; div <= to; div += 2) {
+            if (num % div === 0) {
+                return false;
+            }
         }
+        return true;
     }
-    return true;
 }
 
-function main(N) {
-    const st = new Date().getTime();
+function do1(N) {
     for (let i = 0; i < N; i++) {
-        let prime = isPrime(i);
+        const prime = isPrime(i);
         if (prime) {
             // console.log(i + ': ' + prime);
         }
     }
-    console.log((new Date().getTime() - st) / 1000);
 }
-(function (){
-    const N = 10_000_000;
-    main(N)
-})()
+
+const st = Date.now();
+do1(100_000_000);
+console.log((Date.now() - st) / 1000);
